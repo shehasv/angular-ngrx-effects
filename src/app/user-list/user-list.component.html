@@ -1,0 +1,41 @@
+<div class="filters">
+    <input class="search-input" type="text" placeholder="Search" [(ngModel)]="searchTerm" (keyup)="searchData()" >
+    <div>
+      <label>Sort by</label>
+      <select (change)="sortChange($event)">
+        <option value="">Select</option>
+        <option value="name">Name</option>
+        <option value="city">City</option>
+      </select>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="filter-content">
+      <h2>Filter</h2>
+        <form [formGroup]="filterForm" (ngSubmit)="applyFilter()">
+            <select formControlName="city">
+              <option value="">Select City</option>
+                <option *ngFor="let item of users | sort:'address':'city' " [value]="item.address.city">{{item.address.city}}</option>
+            </select>
+            <select formControlName="company">
+              <option value="">Select Company</option>
+                <option *ngFor="let item of users | sort:'company':'name' " [value]="item.company.name">{{item.company.name}}</option>
+            </select>
+            <div class="filter-btn"> 
+              <button type="button" (click)="clearFilter()">Clear Filter</button>
+              <button [disabled]="!filterForm.dirty" type="submit">Apply Filter</button>
+            </div>
+        </form>
+    </div>
+    <div class="user-content">
+      <div class="user-card" *ngFor="let item of filteredUsers">
+        <h2>Name: {{item.name}}</h2>
+        <h3>City: {{item.address.city}}</h3>
+        <h3>Company: {{item.company.name}}</h3>
+      </div>  
+      
+      <div *ngIf="searchTerm && filteredUsers.length === 0">
+        <h2>No results found.</h2>
+      </div>
+    </div>
+  </div>

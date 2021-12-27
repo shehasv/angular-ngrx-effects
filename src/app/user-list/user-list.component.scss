@@ -1,0 +1,32 @@
+.filters{
+    display: flex;
+    justify-content: space-between;
+    .search-input{
+        width: 40%;
+    }
+}
+.user-card{
+    background-color: antiquewhite;
+}
+
+.main-content{
+    display: flex;
+    flex-direction: row;
+    .filter-content{
+        width: 20%;
+        margin-right: 2%;
+        form{
+            display: flex;
+            flex-direction: column;
+            .filter-btn{
+                margin-top: 5%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+        }
+    }
+    .user-content{
+        width: 80%;
+    }
+}
